@@ -7,7 +7,7 @@ default:
     - docker-runner
 
 variables:
-  IMAGE_NAME: "topfe/flaskapp:${CI_COMMIT_SHORT_SHA}"
+  IMAGE_NAME: "ujslxw/flaskapp:${CI_COMMIT_SHORT_SHA}"
 
 build_job:
   stage: build
@@ -24,6 +24,6 @@ deploy_job:
     entrypoint: [""]
   script:
     - echo "deploy to k8s cluster..."
-    - sed -i "s@FLASK_APP_IMAGE@${IMAGE_NAME}@g" deploy.yaml
-    - kubectl apply -f deploy.yaml
+    - sed -i "s@FLASK_APP_IMAGE@${IMAGE_NAME}@g" deploy.yml
+    - kubectl apply -f deploy.yml
     - kubectl get pods --all-namespaces
